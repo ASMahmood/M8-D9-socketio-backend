@@ -9,7 +9,6 @@ const createSocketServer = (server) => {
 
     socket.on("setUsername", async (data) => {
       try {
-        console.log(data);
         await addUserToGlobal(
           (username = data.username),
           (socketId = socket.id)
@@ -23,7 +22,7 @@ const createSocketServer = (server) => {
           createdAt: new Date(),
         };
 
-        socket.broadcast.to("GLOBAL").emit("bmsg", arivalMessage);
+        socket.to("GLOBAL").emit("bmsg", arivalMessage);
       } catch (error) {
         console.log(error);
       }
